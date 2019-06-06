@@ -332,257 +332,26 @@
       
         
           
-            <h1 id="Manjaro-Deepin-安装以及简单配置"><a href="#Manjaro-Deepin-安装以及简单配置" class="headerlink" title="Manjaro-Deepin 安装以及简单配置"></a>Manjaro-Deepin 安装以及简单配置</h1><h2 id="0-作者电脑信息"><a href="#0-作者电脑信息" class="headerlink" title="0. 作者电脑信息"></a>0. 作者电脑信息</h2><ul>
-<li><p>神舟精盾T97</p>
-</li>
-<li><p>Windows 10 1903 + Manjaro-Deepin 18.0..4</p>
-</li>
-<li><p>i7-7700HQ</p>
-</li>
-<li><p>GTX 1070MQ</p>
-</li>
-</ul>
-<blockquote>
-<p>注: 本篇教程理论上适用于Manjaro各发行版双显卡安装.仅供参考.装系统有风险,请确保重要资料已经做好备份,如果有问题,不要联系我</p>
-</blockquote>
-<h2 id="1-Manjaro-Deepin-安装"><a href="#1-Manjaro-Deepin-安装" class="headerlink" title="1. Manjaro-Deepin 安装"></a>1. Manjaro-Deepin 安装</h2><h3 id="1-1-Manjaro-Deepin-镜像下载"><a href="#1-1-Manjaro-Deepin-镜像下载" class="headerlink" title="1.1 Manjaro-Deepin 镜像下载"></a>1.1 Manjaro-Deepin 镜像下载</h3><p>18.0.2 下载传送门:</p>
-<p><a href="https://osdn.net/projects/manjaro-community/storage/deepin/" target="_blank" rel="noopener">下载地址</a></p>
-<p>建议不要下载rc版本,会有问题.另外,根据自己下载时的系统版本选择,可能到时候就没有18.0.2了.</p>
-<h3 id="1-2-启动盘制作"><a href="#1-2-启动盘制作" class="headerlink" title="1.2 启动盘制作"></a>1.2 启动盘制作</h3><p>Manjaro官网推荐了几款U盘制作工具,我这里用的是rufus,也推荐使用.</p>
-<p>传送门:</p>
-<p><a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus官网</a></p>
-<p>注意点了开始之后，<strong>选择DD模式写入</strong>即可.</p>
-<h3 id="1-3-压缩磁盘空间"><a href="#1-3-压缩磁盘空间" class="headerlink" title="1.3 压缩磁盘空间"></a>1.3 压缩磁盘空间</h3><p>在Windows下<strong>右键此电脑</strong>-&gt;<strong>管理-</strong>&gt;<strong>磁盘管理</strong>,右键一个顺眼的分区,选择<strong>压缩卷</strong>,大概压缩出80G以上的容量,作为Manjaro-Deepin的安装目录.</p>
-<blockquote>
-<p>为了更好的体验,建议将系统安装到固态硬盘上.</p>
-</blockquote>
-<h3 id="1-4-开始安装"><a href="#1-4-开始安装" class="headerlink" title="1.4 开始安装"></a>1.4 开始安装</h3><p>开机进入BIOS,各个电脑厂商进入BIOS的方式不尽相同,这里就不叙述了.不知道的可以上网查询或者拨打电脑厂商的服务热线,去撩小姐姐.</p>
-<p>进入BIOS后,选择U盘启动,这样就进入了安装界面.</p>
-<p>这时,需要做一些操作</p>
-<ul>
-<li><p>lang那一项是语言,不要动它,直接使用英文</p>
-</li>
-<li><p>driver那一项,选择nonfree</p>
-</li>
-<li><p>Boot那一项,双显卡用户需要在这一项上,按E,进入编辑模式</p>
-<ul>
-<li><p>在driver=nonfree后,加个空格</p>
-</li>
-<li><p>然后输入: xdriver=mesa acpi_osi=! acpi_osi=”Windows 2009” </p>
-</li>
-<li><p>要记得与后面的字中间也要有一个空格</p>
-</li>
-<li><p>F10</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>此时顺利的话就会进入到真正的live安装界面,如果卡住了很长时间进不去live桌面,请检查之前的设置是否正确</p>
-<p>双击live桌面的install图标,开始安装.</p>
-<p>注意安装过程中需要联网和电源,最好找一个较好的网络,应该会加快安装速度</p>
-<p>语言依旧用英语,这样可以保证家目录下的文件夹名字是英文而不是中文,这样在没有中文输入法的时候也可以方便在终端进入</p>
-<p>分区的话,选择手动分区,也就是第二个选项,然后找到我们压缩出来的free空间,点击create,直接作为/目录即可</p>
-<p>然后,编辑FAT32分区,点击edit,然后将其挂载为/boot/efi分区.</p>
-<p>然后就可以等待安装完成了</p>
-<h2 id="2-Manjaro-Deepin-安装后的简单配置"><a href="#2-Manjaro-Deepin-安装后的简单配置" class="headerlink" title="2. Manjaro-Deepin 安装后的简单配置"></a>2. Manjaro-Deepin 安装后的简单配置</h2><h3 id="2-1-更改GRUB配置"><a href="#2-1-更改GRUB配置" class="headerlink" title="2.1 更改GRUB配置"></a>2.1 更改GRUB配置</h3><p>安装完成后,直接重启,就可以看到GRUB引导菜单了,此时如果直接进入系统会进不去或者卡桌面,所以我们在GRUB引导菜单的时候,在Manjaro选项上点E,进入编辑模式,然后在quiet后面加上:</p>
-<ul>
-<li><p>先加空格</p>
-</li>
-<li><p>再加上: acpi_osi=! acpi_osi=”Windows 2009”</p>
-</li>
-<li><p>F10</p>
-</li>
-</ul>
-<p>这时候不出意外的话,我们是可以进入系统桌面了.</p>
-<p>为了一劳永逸的解决进入系统的问题,我们需要修改grub配置</p>
-<p>ctlr+alt+t呼出终端,</p>
-<p>输入以下命令:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/grub</span><br></pre></td></tr></table></figure>
+          Manjaro-Deepin 安装以及简单配置0. 作者电脑信息
+神舟精盾T97
 
-<p>在打开的文本编辑器中可以看到quiet,</p>
-<p>我们依旧需要在quiet后面加入我们的代码,如下</p>
-<ul>
-<li><p>先加空格</p>
-</li>
-<li><p>输入以下内容: acpi_osi=! acpi_osi=\“Windows 2009\“</p>
-</li>
-<li><p>ctrl+s保存后退出</p>
-</li>
-</ul>
-<p>在终端中刷新grub,命令如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure>
+Windows 10 1903 + Manjaro-Deepin 18.0..4
 
-<p>大功告成</p>
-<h3 id="2-2-切换镜像源"><a href="#2-2-切换镜像源" class="headerlink" title="2.2 切换镜像源"></a>2.2 切换镜像源</h3><p>终端中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman-mirrors -i -c China -m rank</span><br></pre></td></tr></table></figure>
+i7-7700HQ
 
-<p>在弹出的框中选择清华源,名字中包含tsinghua的</p>
-<p>然后输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo geidt /etc/pacman.conf</span><br></pre></td></tr></table></figure>
+GTX 1070MQ
 
-<p>在文件末尾加入以下内容:</p>
-<p>[archlinuxcn]</p>
-<p>SigLevel = TrustAll</p>
-<p>Server = <a href="http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p>
-<p>保存退出即可</p>
-<h3 id="2-3-更新系统"><a href="#2-3-更新系统" class="headerlink" title="2.3 更新系统"></a>2.3 更新系统</h3><p>终端中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -Syy</span><br></pre></td></tr></table></figure>
 
-<p>这会同步数据库,然后执行以下命令:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -Syyu</span><br></pre></td></tr></table></figure>
 
-<p>一次全盘的系统更新,耐心等待吧</p>
-<h3 id="2-4-启动bumblebee"><a href="#2-4-启动bumblebee" class="headerlink" title="2.4 启动bumblebee"></a>2.4 启动bumblebee</h3><p>更新完成后,再来配置bumblebee</p>
-<p>我们在最开始的时候选择了driver=nonfree</p>
-<p>然后manjaro就会自动给我们装好显卡驱动.</p>
-<p>在终端中输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a 你的用户名 bumblebee</span><br></pre></td></tr></table></figure>
-
-<p>将用户添加到bumblebee组</p>
-<p>验证是否添加成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groups 你的用户名</span><br></pre></td></tr></table></figure>
-
-<p>查看所属的组中有bumblebee就ok</p>
-<p>然后输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable bumblebeed.service</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-5-配置ZSH"><a href="#2-5-配置ZSH" class="headerlink" title="2.5 配置ZSH"></a>2.5 配置ZSH</h3><p>Manjaro自带了zsh,所以只需要配置oh-my-zsh就可以了.</p>
-<p>终端输入以下命令:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
-
-<p>然后就成功将bash换成zsh了</p>
-<p>更换主题</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>zsh各个主题预览网站:</p>
-<p><a href="https://birdteam.net/131798" target="_blank" rel="noopener">Oh-My-Zsh主题集汇总</a></p>
-<p>可以选择一个自己喜欢的主题</p>
-<p>对于某些主题中的箭头乱码,需要使用powerline字体</p>
-<p>字体安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">git clone https://github.com/powerline/fonts.git</span><br><span class="line">cd fonts</span><br><span class="line">./install.sh</span><br><span class="line">sudo cp -Rf fonts/* /usr/share/fonts/</span><br></pre></td></tr></table></figure>
-
-<p>安装后就可以在终端的设置中选择字体,选择Driod Sans Mono For Powerline就可以解决终端箭头乱码问题.</p>
-<p>安装插件zsh-autosuggestions:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">cd .oh-my-zsh/plugins</span><br><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions</span><br><span class="line">cd</span><br><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>然后修改</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(git)</span><br></pre></td></tr></table></figure>
-
-<p>为</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(git zsh-autosuggestions)</span><br></pre></td></tr></table></figure>
-
-<p>ZSH的其他配置:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>在文件末尾加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">color&#123;&#123;&#123;</span></span><br><span class="line">autoload colors</span><br><span class="line">colors</span><br><span class="line"></span><br><span class="line">for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do</span><br><span class="line">eval _$color='%&#123;$terminfo[bold]$fg[$&#123;(L)color&#125;]%&#125;'</span><br><span class="line">eval $color='%&#123;$fg[$&#123;(L)color&#125;]%&#125;'</span><br><span class="line">(( count = $count + 1 ))</span><br><span class="line">done</span><br><span class="line">FINISH="%&#123;$terminfo[sgr0]%&#125;"</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">命令提示符</span></span><br><span class="line"><span class="meta">#</span><span class="bash">RPROMPT=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$RED</span>%D %T<span class="variable">$FINISH</span>"</span>)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">PROMPT=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$CYAN</span>%n@<span class="variable">$YELLOW</span>%M:<span class="variable">$GREEN</span>%/<span class="variable">$_YELLOW</span>&gt;<span class="variable">$FINISH</span> "</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">PROMPT=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$BLUE</span>%M<span class="variable">$GREEN</span>%/</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="variable">$CYAN</span>%n@<span class="variable">$BLUE</span>%M:<span class="variable">$GREEN</span>%/<span class="variable">$_YELLOW</span>&gt;&gt;&gt;<span class="variable">$FINISH</span> <span class="string">")</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">标题栏、任务栏样式&#123;&#123;&#123;</span></span><br><span class="line">case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)</span><br><span class="line">precmd () &#123; print -Pn "\e]0;%n@%M//%/\a" &#125;</span><br><span class="line">preexec () &#123; print -Pn "\e]0;%n@%M//%/\ $1\a" &#125;</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">关于历史纪录的配置 &#123;&#123;&#123;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">历史纪录条目数量</span></span><br><span class="line">export HISTSIZE=10000</span><br><span class="line"><span class="meta">#</span><span class="bash">注销后保存的历史纪录条目数量</span></span><br><span class="line">export SAVEHIST=10000</span><br><span class="line"><span class="meta">#</span><span class="bash">历史纪录文件</span></span><br><span class="line">export HISTFILE=~/.zhistory</span><br><span class="line"><span class="meta">#</span><span class="bash">以附加的方式写入历史纪录</span></span><br><span class="line">setopt INC_APPEND_HISTORY</span><br><span class="line"><span class="meta">#</span><span class="bash">如果连续输入的命令相同，历史纪录中只保留一个</span></span><br><span class="line">setopt HIST_IGNORE_DUPS</span><br><span class="line"><span class="meta">#</span><span class="bash">为历史纪录中的命令添加时间戳</span></span><br><span class="line">setopt EXTENDED_HISTORY</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启用 <span class="built_in">cd</span> 命令的历史纪录，<span class="built_in">cd</span> -[TAB]进入历史路径</span></span><br><span class="line">setopt AUTO_PUSHD</span><br><span class="line"><span class="meta">#</span><span class="bash">相同的历史路径只保留一个</span></span><br><span class="line">setopt PUSHD_IGNORE_DUPS</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在命令前添加空格，不将此命令添加到纪录文件中</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">setopt</span> HIST_IGNORE_SPACE</span></span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 补全&#123;&#123;&#123;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">彩色补全菜单</span></span><br><span class="line">eval $(dircolors -b)</span><br><span class="line">export ZLSCOLORS="$&#123;LS_COLORS&#125;"</span><br><span class="line">zmodload zsh/complist</span><br><span class="line">zstyle ':completion:*' list-colors $&#123;(s.:.)LS_COLORS&#125;</span><br><span class="line">zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修正大小写</span></span><br><span class="line">zstyle ':completion:*' matcher-list '' 'm:&#123;a-zA-Z&#125;=&#123;A-Za-z&#125;'</span><br><span class="line"><span class="meta">#</span><span class="bash">错误校正</span></span><br><span class="line">zstyle ':completion:*' completer _complete _match _approximate</span><br><span class="line">zstyle ':completion:*:match:*' original only</span><br><span class="line">zstyle ':completion:*:approximate:*' max-errors 1 numeric</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">kill</span> 命令补全</span></span><br><span class="line">compdef pkill=kill</span><br><span class="line">compdef pkill=killall</span><br><span class="line">zstyle ':completion:*:*:kill:*' menu yes select</span><br><span class="line">zstyle ':completion:*:*:*:*:processes' force-list always</span><br><span class="line">zstyle ':completion:*:processes' command 'ps -au$USER'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">补全类型提示分组</span></span><br><span class="line">zstyle ':completion:*:matches' group 'yes'</span><br><span class="line">zstyle ':completion:*' group-name ''</span><br><span class="line">zstyle ':completion:*:options' description 'yes'</span><br><span class="line">zstyle ':completion:*:options' auto-description '%d'</span><br><span class="line">zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'</span><br><span class="line">zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'</span><br><span class="line">zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'</span><br><span class="line">zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> ~ 补全顺序</span></span><br><span class="line">zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#行编辑高亮模式 &#123;&#123;&#123;</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ctrl+@ 设置标记，标记和光标点之间为 region</span></span><br><span class="line">zle_highlight=(region:bg=magenta #选中区域</span><br><span class="line">special:bold      #特殊字符</span><br><span class="line">isearch:underline)#搜索时使用的关键字</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#空行(光标在行首)补全 "cd " &#123;&#123;&#123;</span></span></span><br><span class="line">user-complete()&#123;</span><br><span class="line">case $BUFFER in</span><br><span class="line">"" )                       # 空行填入 "cd "</span><br><span class="line">BUFFER="cd "</span><br><span class="line">zle end-of-line</span><br><span class="line">zle expand-or-complete</span><br><span class="line">;;</span><br><span class="line">"cd --" )                  # "cd --" 替换为 "cd +"</span><br><span class="line">BUFFER="cd +"</span><br><span class="line">zle end-of-line</span><br><span class="line">zle expand-or-complete</span><br><span class="line">;;</span><br><span class="line">"cd +-" )                  # "cd +-" 替换为 "cd -"</span><br><span class="line">BUFFER="cd -"</span><br><span class="line">zle end-of-line</span><br><span class="line">zle expand-or-complete</span><br><span class="line">;;</span><br><span class="line">* )</span><br><span class="line">zle expand-or-complete</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line">&#125;</span><br><span class="line">zle -N user-complete</span><br><span class="line">bindkey "\t" user-complete</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">命令别名 &#123;&#123;&#123;</span></span><br><span class="line">alias cp='cp -i'</span><br><span class="line">alias mv='mv -i'</span><br><span class="line">alias rm='rm -i'</span><br><span class="line">alias ls='ls -F --color=auto'</span><br><span class="line">alias ll='ls -l --color=auto'</span><br><span class="line">alias grep='grep --color=auto'</span><br><span class="line">alias la='ls -a'</span><br><span class="line">alias pacman='pacman --color=auto'</span><br><span class="line">alias yay='yay --color=auto'</span><br><span class="line"><span class="meta">#</span><span class="bash">&#125;&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">漂亮又实用的命令高亮界面</span></span><br><span class="line">setopt extended_glob</span><br><span class="line">TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&amp;' '&amp;&amp;' 'sudo' 'do' 'time' 'strace')</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">recolor-cmd() &#123;</span><br><span class="line">region_highlight=()</span><br><span class="line">colorize=true</span><br><span class="line">start_pos=0</span><br><span class="line">for arg in $&#123;(z)BUFFER&#125;; do</span><br><span class="line">((start_pos+=$&#123;#BUFFER[$start_pos+1,-1]&#125;-$&#123;#$&#123;BUFFER[$start_pos+1,-1]## #&#125;&#125;))</span><br><span class="line">((end_pos=$start_pos+$&#123;#arg&#125;))</span><br><span class="line">if $colorize; then</span><br><span class="line">colorize=false</span><br><span class="line">res=$(LC_ALL=C builtin type $arg 2&gt;/dev/null)</span><br><span class="line">case $res in</span><br><span class="line">*'reserved word'*)   style="fg=magenta,bold";;</span><br><span class="line">*'alias for'*)       style="fg=cyan,bold";;</span><br><span class="line">*'shell builtin'*)   style="fg=yellow,bold";;</span><br><span class="line">*'shell function'*)  style='fg=green,bold';;</span><br><span class="line">*"$arg is"*)</span><br><span class="line">[[ $arg = 'sudo' ]] &amp;&amp; style="fg=red,bold" || style="fg=blue,bold";;</span><br><span class="line">*)                   style='none,bold';;</span><br><span class="line">esac</span><br><span class="line">region_highlight+=("$start_pos $end_pos $style")</span><br><span class="line">fi</span><br><span class="line">[[ $&#123;$&#123;TOKENS_FOLLOWED_BY_COMMANDS[(r)$&#123;arg//|/\|&#125;]&#125;:+yes&#125; = 'yes' ]] &amp;&amp; colorize=true</span><br><span class="line">start_pos=$end_pos</span><br><span class="line">done</span><br><span class="line">&#125;</span><br><span class="line">check-cmd-self-insert() &#123; zle .self-insert &amp;&amp; recolor-cmd &#125;</span><br><span class="line">check-cmd-backward-delete-char() &#123; zle .backward-delete-char &amp;&amp; recolor-cmd &#125;</span><br><span class="line"></span><br><span class="line">zle -N self-insert check-cmd-self-insert</span><br><span class="line">zle -N backward-delete-char check-cmd-backward-delete-char</span><br></pre></td></tr></table></figure>
-
-<p>然后更新配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Manjaro-Deepin-常用软件安装"><a href="#3-Manjaro-Deepin-常用软件安装" class="headerlink" title="3. Manjaro-Deepin 常用软件安装"></a>3. Manjaro-Deepin 常用软件安装</h2><ul>
-<li><p><strong>安装搜狗输入法</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S fcitx-im</span><br></pre></td></tr></table></figure>
-
-<p>直接enter,全部安装</p>
-<p>然后安装配置工具</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S fcitx-configtool</span><br></pre></td></tr></table></figure>
-
-<p>然后安装搜狗拼音输入法</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S fcitx-sogoupinyin</span><br></pre></td></tr></table></figure>
-
-<p>然后配置环境变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.xprofile</span><br></pre></td></tr></table></figure>
-
-<p>在文件中插入以下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GTK_IM_MODULE=fcitx</span><br><span class="line">export QT_IM_MODULE=fcitx</span><br><span class="line">export XMODIFIERS=”@im=fcitx”</span><br></pre></td></tr></table></figure>
-
-<p>重启后,可以在输入法配置中进行一些配置,就可以使用中文输入法了</p>
-</li>
-<li><p><strong>安装chrome浏览器</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S google-chrome</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装网易云音乐</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S netease-cloud-music</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装TIM/QQ</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tim</span></span><br><span class="line">yaourt -S deepin-wine-tim</span><br><span class="line"><span class="meta">#</span><span class="bash"> qq</span></span><br><span class="line">yaourt -S deepin-wine-qq</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装微信</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 网页版微信</span></span><br><span class="line">sudo pacman -S electronic-wechat</span><br><span class="line"><span class="meta">#</span><span class="bash"> deepin微信</span></span><br><span class="line">yaourt -S deepin-wine-wechat</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装百度网盘</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> deepin-wine的百度网盘</span></span><br><span class="line">yaourt -S deepin-wine-baidupan</span><br></pre></td></tr></table></figure>
-
-<p>其余版本的如python,go等其实可以在自带的软件商店中搜索到</p>
-</li>
-<li><p><strong>安装迅雷</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> deepin-wine的迅雷</span></span><br><span class="line">yaourt -S deepin-wine-thunderspeed</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装WPS</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S wps-office</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装字体</span></span><br><span class="line">sudo pacman -S ttf-wps-fonts</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装字体</strong></p>
-</li>
-</ul>
-<ul>
-<li><p><strong>安装福昕阅读器</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yaourt foxit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装Typora编辑器</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yaourt -S typora</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装SSR</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yaourt -S electron-ssr</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装Teamviewer</strong></p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S teamviewer</span><br></pre></td></tr></table></figure>
-
-<p>打开后如果一直提示:未就绪,请检查网络配置</p>
-<p>输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo teamviewer --daemon start</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="4-Manjaro-Deepin-搭建开发环境"><a href="#4-Manjaro-Deepin-搭建开发环境" class="headerlink" title="4. Manjaro-Deepin 搭建开发环境"></a>4. Manjaro-Deepin 搭建开发环境</h2><h3 id="4-1-JDK-amp-Maven"><a href="#4-1-JDK-amp-Maven" class="headerlink" title="4.1 JDK&amp;Maven"></a>4.1 JDK&amp;Maven</h3><p>去官网下载你需要的版本对象的linux的tar.gz包到本地</p>
-<p>然后解压到你想要的地方</p>
-<p>配置环境变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=你的jdk目录</span><br><span class="line">export JRE_HOME=你的jre目录</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export MAVEN_HOME=你的maven目录</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:$JRE_HOME/bin</span><br></pre></td></tr></table></figure>
-
-<p>然后</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除自带的</span></span><br><span class="line">sudo rm /usr/bin/java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建</span></span><br><span class="line">sudo ln -s jdk所在目录/bin/java /usr/bin/java</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4-NodeJS"><a href="#4-4-NodeJS" class="headerlink" title="4.4 NodeJS"></a>4.4 NodeJS</h3><p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> nodejs</span></span><br><span class="line">sudo pacman -S nodejs</span><br><span class="line"><span class="meta">#</span><span class="bash"> npm</span></span><br><span class="line">sudo pacman -S npm</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-5-Vue"><a href="#4-5-Vue" class="headerlink" title="4.5 Vue"></a>4.5 Vue</h3><p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vue</span></span><br><span class="line">sudo npm install -g vue-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-其他问题"><a href="#5-其他问题" class="headerlink" title="5. 其他问题"></a>5. 其他问题</h3><h4 id="5-1-外接HIFI声卡时输出音频卡顿"><a href="#5-1-外接HIFI声卡时输出音频卡顿" class="headerlink" title="5.1. 外接HIFI声卡时输出音频卡顿"></a>5.1. 外接HIFI声卡时输出音频卡顿</h4><p>该问题主要是音频采样率的问题,我用的是魅族的HIFI转接线,在听歌时会出现偶尔卡顿,这种现象在手机上也是有的,当时手机上的解决方案是将采样率调到192000,就ok了.那么电脑上出现这个问题,我自然而然的就想到是采样率的问题.具体解决方案如下:</p>
-<p>终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 编辑</span></span></span><br><span class="line">sudo gedit /etc/pulse/daemon.conf</span><br></pre></td></tr></table></figure>
-
-<p>修改;default-sample-rate = 44100为</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default-sample-rate = 192000</span><br></pre></td></tr></table></figure>
-
-<p>然后执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">killall pulseaudio</span><br><span class="line">pulseaudio -k</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-
-<p>亲测卡顿问题解决</p>
-
-          
+注: 本篇教程理论上适用于Manjaro各发行版双显卡安装.仅供参考.装系统有风险
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/04/Manjaro-Deepin 安装以及简单配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -700,21 +469,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/02/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1003,7 +766,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "";
+    var search_path = "search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
