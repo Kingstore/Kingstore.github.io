@@ -90,12 +90,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mukia&#39;s blogs">
-<meta property="og:url" content="https://www.csqsx.cn/tags/Linux/index.html">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://www.csqsx.cn/about/index.html">
 <meta property="og:site_name" content="Mukia&#39;s blogs">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-06T12:15:28.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mukia&#39;s blogs">
+<meta name="twitter:title" content="about">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://www.csqsx.cn/tags/Linux/">
+  <link rel="canonical" href="https://www.csqsx.cn/about/">
 
 
 
 
 
-  <title>标签: Linux | Mukia's blogs</title>
+  <title>about | Mukia's blogs</title>
   
 
 
@@ -150,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,52 +297,36 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Linux<small>标签</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline">about</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/06/04/Manjaro-Deepin 安装以及简单配置/" itemprop="url">
-              
-                <span itemprop="name">Manjaro-Deepin 安装以及简单配置</span>
-              
-            </a>
+          
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-04T20:49:32+08:00" content="2019-06-04">
-          06-04
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
 
 
           </div>
@@ -349,6 +334,12 @@
 
 
           
+
+  
+  <div id="gitalk-container"></div>
+  
+
+
 
         </div>
         
@@ -564,6 +555,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -604,6 +599,22 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c271de3d666b83f924aa',
+          clientSecret: '9d810111747f7c0fe153c4bd273ef410d0e78aae',
+          repo: 'Kingstore.github.io',
+          owner: 'Kingstore',
+          admin: ['Kingstore'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
